@@ -1,0 +1,216 @@
+<!DOCTYPE html>  <!-- Declares this document as an HTML5 document -->
+<html lang="en">  <!-- Starts the HTML document and specifies the language as English -->
+
+<head>  <!-- Starts the head section which contains meta and style information for the page -->
+    <meta charset="UTF-8">  <!-- Specifies the character encoding for the page (UTF-8) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Ensures the page is responsive (fits on mobile screens) -->
+    
+    <!-- These links load fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">  <!-- Preconnect to fonts.googleapis.com for faster loading -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <!-- Preconnect to fonts.gstatic.com for faster loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Kablammo&family=Oswald:wght@200..700&display=swap" rel="stylesheet">  <!-- Loads specific fonts (Kablammo and Oswald) from Google Fonts -->
+    
+    <title>Resume</title>  <!-- Sets the title of the page (this will appear in the browser tab) -->
+    
+    <style>
+        /* Basic styling for the body, including background color and font */
+        body {
+            font-family: "Oswald", sans-serif;  /* Sets the font for the entire page to "Oswald" */
+            margin: 0;  /* Removes the default margin around the page */
+            padding: 0;  /* Removes the default padding around the page */
+            background-color: #f5f5f5;  /* Sets the background color of the page */
+            color: #333;  /* Sets the text color to dark gray */
+        }
+
+        /* Navigation bar styling */
+        nav {
+            position: fixed;  /* Keeps the navigation bar fixed at the top of the page */
+            top: 0;  /* Positions the navigation bar at the top of the page */
+            left: 0;  /* Positions the navigation bar to the left side of the page */
+            right: 0;  /* Positions the navigation bar to the right side of the page */
+            background-color: #e8dda6;  /* Sets the background color of the navigation bar */
+            color: rgb(0, 0, 0);  /* Sets the text color to black */
+            padding: 15px;  /* Adds padding inside the navigation bar */
+            z-index: 1000;  /* Ensures the navigation bar stays on top of other elements */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Adds a small shadow below the navigation bar for depth */
+        }
+
+        nav ul {
+            list-style-type: none;  /* Removes the default bullet points from the list */
+            padding: 0;  /* Removes the default padding of the list */
+            margin: 0;  /* Removes the default margin of the list */
+        }
+
+        nav ul li {
+            display: inline;  /* Displays the list items in a row (horizontally) */
+            margin-right: 20px;  /* Adds space between each list item */
+        }
+
+        nav ul li a {
+            color: rgb(0, 0, 0);  /* Sets the text color of the links to black */
+            text-decoration: none;  /* Removes the underline from links */
+            font-weight: bold;  /* Makes the text of the links bold */
+            transition: color 0.3s;  /* Makes the link color change smoothly when hovered over */
+        }
+
+        nav ul li a:hover {
+            color: #d2691e;  /* Changes the link color to a brown shade when hovered over */
+        }
+
+        /* Styling for each section of the page */
+        section {
+            display: none;  /* Hides all sections by default */
+            padding: 60px 20px;  /* Adds padding inside each section */
+            margin-top: 50px;  /* Adds space between the navigation bar and the sections */
+            border-radius: 8px;  /* Rounds the corners of the sections */
+            background-color: #ffffff;  /* Sets the background color of the sections to white */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a shadow for depth */
+        }
+
+        .active {
+            display: block;  /* Displays the section with the 'active' class */
+        }
+
+        .section-header {
+            margin-top: 20px;  /* Adds space above the section headers */
+            font-size: 28px;  /* Sets the font size of the section headers */
+            color: #d2691e;  /* Sets the text color of section headers to a brown shade */
+            text-align: center;  /* Centers the text of section headers */
+        }
+
+        h3 {
+            color: #555;  /* Sets the text color of sub-headers (h3) to a gray shade */
+        }
+
+        img {
+            border-radius: 8px;  /* Rounds the corners of images */
+            margin-bottom: 20px;  /* Adds space below images */
+        }
+
+        ul {
+            padding-left: 20px;  /* Adds indentation to the list items */
+        }
+
+        ul li {
+            margin-bottom: 10px;  /* Adds space between list items */
+        }
+
+        .home-content {
+            font-size: 24px;  /* Sets the font size for home content */
+            line-height: 1.5;  /* Increases line height for better readability */
+            text-align: center;  /* Centers the text in the home content section */
+        }
+
+        /* Add background to the home section */
+        #home {
+            background: linear-gradient(to right, #e8dda6, #f5f5f5);  /* Creates a gradient background for the home section */
+            text-align: center;  /* Centers the text in the home section */
+        }
+
+        .profile-cards {
+            display: flex;  /* Uses flexbox to arrange the profile cards in a row */
+            justify-content: center;  /* Centers the profile cards horizontally */
+            gap: 20px;  /* Adds space between the profile cards */
+            margin-top: 20px;  /* Adds space above the profile cards */
+        }
+
+        .profile-card {
+            background-color: #ffffff;  /* Sets the background color of each profile card to white */
+            border-radius: 8px;  /* Rounds the corners of the profile cards */
+            padding: 20px;  /* Adds padding inside the profile cards */
+            width: 200px;  /* Sets a fixed width for the profile cards */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Adds a shadow for depth */
+            cursor: pointer;  /* Changes the cursor to a pointer when hovering over the card */
+            transition: transform 0.3s;  /* Makes the profile cards lift when hovered over */
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);  /* Lifts the profile card up by 5px when hovered over */
+        }
+
+        .profile-card h3 {
+            color: #d2691e;  /* Sets the color of the profile card headers to a brown shade */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('home')">Home</a></li>  <!-- Link to the Home section -->
+            <li><a href="#" onclick="showSection('about1')">Pawares</a></li>  <!-- Link to Pawares' profile -->
+            <li><a href="#" onclick="showSection('about2')">Rapeephat</a></li>  <!-- Link to Rapeephat's profile -->
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="active">  <!-- Home section is displayed by default -->
+        <h2 class="section-header">Welcome</h2>  <!-- Header for the Home section -->
+        <p class="home-content">Choose a profile below to learn more about each individual’s background, experiences, and contact information.</p>  <!-- Introduction text in Home section -->
+        
+        <div class="profile-cards">  <!-- Container for the profile cards -->
+            <div class="profile-card" onclick="showSection('about1')">  <!-- Profile card for Pawares -->
+                <h3>Pawares Sareewong</h3>  <!-- Name of the first person -->
+                <p>Click to learn more about Pawares</p>  <!-- Description for Pawares -->
+            </div>
+            
+            <div class="profile-card" onclick="showSection('about2')">  <!-- Profile card for Rapeephat -->
+                <h3>Rapeephat Sagulrukpukdee</h3>  <!-- Name of the second person -->
+                <p>Click to learn more about Rapeephat</p>  <!-- Description for Rapeephat -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section for Pawares -->
+    <section id="about1">  <!-- Section for Pawares' profile -->
+        <h2 class="section-header">About Pawares</h2>  <!-- Header for Pawares' profile -->
+        <img src="https://cdn.discordapp.com/attachments/1298923495719436348/1306591469011996712/Screenshot_2024-11-14_190737.png?ex=673739a1&is=6735e821&hm=54321d4a3d33a5ca01c9deb36dcc1279ac9b32a45404a9bc4e6d354366a14d75&" alt="Pawares Photo" width="170">  <!-- Profile image of Pawares -->
+        <h3>Full Name: Pawares Sareewong</h3>  <!-- Full name of Pawares -->
+        <h3>Nickname: Fast</h3>  <!-- Nickname of Pawares -->
+        <p>Job Title: Student</p>  <!-- Job title of Pawares -->
+        
+        <h3>Experience</h3>  <!-- Section for work experience -->
+        <p>Pawares has no prior work experience.</p>  <!-- Experience description -->
+        
+        <h3>Contact Me</h3>  <!-- Section for contact information -->
+        <p>You can reach me at:</p>
+        <ul>
+            <li>Email: <a href="mailto:pawares.fs@gmail.com">pawares.fs@gmail.com</a></li>  <!-- Email contact -->
+            <li>Line ID: <a href="https://linkedin.com/in/yourprofile">pawares_fs</a></li>  <!-- Line ID contact -->
+        </ul>
+    </section>
+
+    <!-- Profile Section for Rapeephat -->
+    <section id="about2">  <!-- Section for Rapeephat's profile -->
+        <h2 class="section-header">About Rapeephat</h2>  <!-- Header for Rapeephat's profile -->
+        <img src="https://cdn.discordapp.com/attachments/1298923495719436348/1306590717854093362/IMG_0531.png?ex=673738ee&is=6735e76e&hm=9706ea52c4c576cfe5f390d3926c16eb11d306e806ef7bd084c262fff3b84d2f&" alt="Rapeephat Photo" width="170">  <!-- Profile image of Rapeephat -->
+        <h3>Full Name: Rapeephat Sagulrukpukdee</h3>  <!-- Full name of Rapeephat -->
+        <h3>Nickname: Pete</h3>  <!-- Nickname of Rapeephat -->
+        <p>Job Title: Student</p>  <!-- Job title of Rapeephat -->
+        
+        <h3>Experience</h3>  <!-- Section for work experience -->
+        <p>Rapeephat has been an exchange student in the USA for one year.</p>  <!-- Experience description -->
+        
+        <h3>Contact Me</h3>  <!-- Section for contact information -->
+        <p>You can reach me at:</p>
+        <ul>
+            <li>Email: <a href="mailto:rapeephat.peet@gmail.com">rapeephat.peet@gmail.com</a></li>  <!-- Email contact -->
+            <li>Line ID: <a href="https://linkedin.com/in/yourprofile">0922502175</a></li>  <!-- Line ID contact -->
+        </ul>
+    </section>
+
+    <script>
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');  // Select all sections
+            sections.forEach(section => {
+                section.classList.remove('active');  // Hide all sections
+            });
+            const activeSection = document.getElementById(sectionId);  // Get the section to show
+            activeSection.classList.add('active');  // Show the selected section
+        }
+    </script>
+</body>
+</html>
